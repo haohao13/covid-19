@@ -1,0 +1,109 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+The purpose of this R notebook is to clean the raw datasets, which includes daily confirmed and test data for several countries. Since we are interested in states in the U.S. and Italy, we selected those data. At the end, the selected information were merged together. 
+```{r}
+library(tidyverse)
+library(dplyr)
+```
+
+Italy
+```{r}
+##Read data from sources
+confirmed <- read.csv("confirmed_countries.csv")
+tested <- read.csv("full_list.csv")
+```
+
+
+```{r}
+##Remove unnecessary columns and aggregate the dataset
+confirmed <- confirmed[ -c(1,3,4) ]
+confirmed <- cbind(confirmed[1],stack(confirmed[-1]))
+```
+
+```{r}
+##Select Italy data only, reconstruct date column and remove duplicated column
+Italy_confirmed <- confirmed[ which(confirmed$Country.Region=='Italy'), ]
+Italy_confirmed<-mutate(Italy_confirmed,new_var=paste(substr(Italy_confirmed$ind,2,8)))
+Italy_confirmed<-Italy_confirmed[ -c(3) ]
+```
+
+```{r}
+##Name the columns
+names(Italy_confirmed)[1]<-"Country"
+names(Italy_confirmed)[2]<-"Confirmed"
+names(Italy_confirmed)[3]<-"Date"
+```
+
+```{r}
+##Calculated daily increased confirmed cases and add as one of the columns
+Italy_confirmed<-mutate(Italy_confirmed,Day_Confirmed=Italy_confirmed$Confirmed-lag(Italy_confirmed$Confirmed,1))
+```
+
+```{r}
+##Selected Italy from the dataset and remove unnecessary column
+Italy_test <- tested[ which(tested$Entity=='Italy'), ]
+Italy_test<-Italy_test[ -c(2) ]
+```
+
+```{r}
+##Calculate daily increased test and add as one of the columns
+Italy_test<-mutate(Italy_test,Day_test=Italy_test$Cumulative.total.tests-lag(Italy_test$Cumulative.total.tests,1))
+```
+
+```{r}
+##Reorder the columns and rename
+Italy_test$Day_test[1]<-4324
+names(Italy_test)[3]<-"Cumulative_tests"
+names(Italy_test)[1]<-"Country"
+```
+
+```{r}
+##Assign a sequence number to both dataframes in convinience of later merge
+Italy_confirmed$seq <- seq.int(nrow(Italy_confirmed))
+Italy_test$seq <- seq.int(nrow(Italy_test))
+```
+
+```{r}
+##Merge confirmed data and test data into one dataframe and exclude unnecessary columns
+Italy_combined <- merge(Italy_confirmed,Italy_test,by="seq")
+Italy_combined<-Italy_combined[ -c(1,4,6) ]
+```
+
+```{r}
+##Rename the columns
+names(Italy_combined)[1]<-"Region"
+names(Italy_combined)[4]<-"Date"
+Italy_combined
+```
+
+US
+```{r}
+##Read data from the source and remove unnecessary columns
+US_data <- read.csv("daily_data.csv")
+US<-US_data[ -c(3,4,7,8) ]
+```
+
+```{r}
+##Rename the columns and reorder
+names(US)[1]<-"Date"
+names(US)[2]<-"Region"
+names(US)[3]<-"Day_Confirmed"
+names(US)[4]<-"Day_test"
+names(US)[5]<-"Confirmed"
+names(US)[6]<-"Cumulative_tests"
+US<-US[c(2,5,3,1,6,4)]
+```
+
+```{r}
+##Combine data of Italy and US together into one dataframe
+Italy_US<-rbind(US, Italy_combined)
+```
+
+```{r}
+##Export the combined dataset to a csv file
+write.csv(Italy_US, file ="Italy_US.csv")
+```
+
