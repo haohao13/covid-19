@@ -3,7 +3,7 @@
 
 ### Core Workbooks
 1. covid-19.twb \
-Includes all graphs related to spreading center. \
+Includes all graphs related to spreading center. 
 
 2. COVID-19 Data Manipulation.ipynb \
 Code for data manipulation. 
