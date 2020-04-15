@@ -3,9 +3,15 @@
 
 ### Core Workbooks
 1. covid-19.twb \
-Includes all graphs related to spreading center. 
+Identify spreading center. 
 
-2. COVID-19 Data Manipulation.ipynb \
+2. map and motion.twb \
+Confirmed cases in states of US over time on a map.
+
+3. NY Italy Comparison.twb \
+Comparison between COVID 19 spreading trends in NewYork and Italy.
+
+4. COVID-19 Data Manipulation.ipynb \
 Aggregated movement data and covid-19 related (positive, negative, tests, etc.) data for each state in the US.
 
 Data source:\
@@ -19,8 +25,16 @@ transition.csv (movement among states in US) \
 covid_data.csv (includes state population) \
 daily_data.csv (includes tests)
 
-3. Italy_and_USStates.Rmd \
+5. Italy_and_USStates.Rmd \
 Aggregated data into one dataset that combines daily confirmed and test data of Italy and states in the US.
 
-4. NY_transition_cases.ipynb \
+Input files: \
+combined_confirmed.csv \
+full_list.csv
+
+Output file: \
+Italy_US.csv
+
+6. NY_transition_cases.ipynb \
 Merge transition data that only includes NY travel history and the data that document the number of positive cases of each state.
+
