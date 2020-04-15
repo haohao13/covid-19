@@ -1,7 +1,7 @@
 # COVID-19 Challenge
-# Team: Indoorsy Aggies
+### Team: Indoorsy Aggies
 
-# Core Workbooks
+### Core Workbooks
 1. covid-19.twb
 Includes all graphs related to spreading center.
 
