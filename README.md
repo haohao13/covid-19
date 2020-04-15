@@ -4,9 +4,9 @@
 ### Core Workbooks
 1. covid-19.twb \
 Includes all graphs related to spreading center. \
-\
+
 2. COVID-19 Data Manipulation.ipynb \
-Code for data manipulation. \
+Code for data manipulation. 
 
 Data source:\
 https://github.com/COVIDExposureIndices/COVIDExposureIndices/tree/master/lex_data \
@@ -17,4 +17,4 @@ https://worldpopulationreview.com/states/state-abbreviations/ \
 Output datasets: \
 transition.csv (movement among states in US) \
 covid_data.csv (includes state population) \
-daily_data.csv (includes tests) \
+daily_data.csv (includes tests)
