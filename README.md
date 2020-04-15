@@ -29,8 +29,8 @@ daily_data.csv (includes tests)
 Aggregated data into one dataset that combines daily confirmed and test data of Italy and states in the US.
 
 Input files: \
-combined_confirmed.csv \
-full_list.csv
+combined_confirmed.csv (contains data of confirmed cases of several countries over time) \
+full_list.csv (contains data of tested cases of several countries over time)
 
 Output file: \
 Italy_US.csv
