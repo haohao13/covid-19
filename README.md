@@ -2,7 +2,7 @@
 ### Team: Indoorsy Aggies
 
 ### Core Workbooks
-1. covid-19.twb
+1. covid-19.twb \
 Includes all graphs related to spreading center.
 
 2. COVID-19 Data Manipulation.ipynb
