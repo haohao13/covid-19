@@ -1,6 +1,9 @@
 # COVID-19 Challenge
 ### Team: Indoorsy Aggies
 
+### Project Summary Presentation
+The Spreading Center of U.S. - Indoorsy Aggies.pptx
+
 ### Core Workbooks
 1.covid-19.twb \
 Identify spreading center. 
